@@ -1,4 +1,5 @@
 ﻿using DocumentOcrScanner.Constants;
+using DocumentOcrScanner.Data;
 using DocumentOcrScanner.Helpers;
 using DocumentOcrScanner.Models;
 
@@ -6,6 +7,13 @@ namespace DocumentOcrScanner.Services;
 
 public class DocumentInfoReaderService : IDocumentInfoReaderService
 {
+    private readonly IApplicationFormInfoRepository _repository;
+
+    public DocumentInfoReaderService(IApplicationFormInfoRepository repository)
+    {
+        _repository = repository;
+    }
+
     public async Task ReadRgDocumentInfoAsync(IFormFile file)
     {
         var fileBytesList = await HandleFileExtensionAndGetBytesListAsync(file);
