@@ -9,8 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 FirebaseSettings firebaseSettings = new FirebaseSettings();
-
-var jSonSet = JsonSerializer.Serialize(new FirebaseSettings());
+var firebaseJson = JsonSerializer.Serialize(new FirebaseSettings());
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -24,7 +23,7 @@ builder.Services.AddSingleton(_ => new FirestoreProvider(
     new FirestoreDbBuilder
     {
         ProjectId = firebaseSettings.ProjectId,
-        JsonCredentials = JsonSerializer.Serialize(new FirebaseSettings())
+        JsonCredentials = firebaseJson
     }.Build()
 ));
 
