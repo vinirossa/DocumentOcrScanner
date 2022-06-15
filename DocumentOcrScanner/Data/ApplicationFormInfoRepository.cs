@@ -1,5 +1,21 @@
-﻿namespace DocumentOcrScanner.Data;
+﻿using DocumentOcrScanner.Models;
 
-public class ApplicationFormInfoRepository: IApplicationFormInfoRepository
+namespace DocumentOcrScanner.Data;
+
+public class ApplicationFormInfoRepository : IApplicationFormInfoRepository
 {
+    public Task<ApplicationFormInfo> Get(string rg)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IEnumerable<ApplicationFormInfo>> GetList()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task Insert(ApplicationFormInfo model)
+    {
+        throw new NotImplementedException();
+    }
 }
