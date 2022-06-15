@@ -1,21 +1,37 @@
-﻿using DocumentOcrScanner.Models;
+﻿using DocumentOcrScanner.Data.Infra;
+using DocumentOcrScanner.Models;
 
 namespace DocumentOcrScanner.Data;
 
 public class ApplicationFormInfoRepository : IApplicationFormInfoRepository
 {
-    public Task<ApplicationFormInfo> Get(string rg)
+    private readonly FirestoreProvider _firestoreProvider;
+
+    public ApplicationFormInfoRepository(FirestoreProvider firestoreProvider)
     {
-        throw new NotImplementedException();
+        _firestoreProvider = firestoreProvider;
     }
 
-    public Task<IEnumerable<ApplicationFormInfo>> GetList()
+    public async Task<ApplicationFormInfo> Get(string id)
     {
-        throw new NotImplementedException();
+        CancellationTokenSource cts = new CancellationTokenSource();
+
+        return await _firestoreProvider.Get<ApplicationFormInfo>(id, cts.Token);
     }
 
-    public Task Insert(ApplicationFormInfo model)
+    public async Task<IEnumerable<ApplicationFormInfo>> GetList()
     {
-        throw new NotImplementedException();
+        CancellationTokenSource cts = new CancellationTokenSource();
+
+        var all = await _firestoreProvider.GetAll<ApplicationFormInfo>(cts.Token);
+
+        return all;
+    }
+
+    public async Task Insert(ApplicationFormInfo model)
+    {
+        CancellationTokenSource cts = new CancellationTokenSource();
+
+        await _firestoreProvider.AddOrUpdate(model, cts.Token);
     }
 }
