@@ -1,0 +1,70 @@
+- Integrar com Firebase
+- Integrar com o Functions
+
+Ancelmo
+- Criar Enums que serão utilizados
+- Criar DocumentInfoReaderService
+- Criar Endpoint ReadDocumentInfoAsync
+
+Vinícius
+- Criar OcrScannerService e relacionados
+- Criar as constantes de Regex
+
+--------------------------------------------------------
+
+CAMADAS
+
+- Controller
+	- ApplicationFormInfoController
+		- Endpoint ReadDocumentInfoAsync(EDocumentType type, IFormFile file)
+			var dto = OcrScannerService.ScanDocumentAsync(file)
+			
+			switch type
+				DocumentInfoReaderService.ExtractRgInfoAsync(dto)
+				#DocumentInfoReaderService.ExtractCpfInfoAsync(dto)
+				#DocumentInfoReaderService.ExtractDegreeInfoAsync(dto)
+			
+			
+		- Endpoint CompareDocumentsInfosAndFillBaseInfo(EDocumentType type, IFormFile file)
+
+- Service (Interface)
+	- DocumentInfoReaderService
+		* ScanDocumentAsync(IFormFile file)
+		* ExtractRgInfoAsync(OcrDto)
+			~ Extrai informações do Rg com o Regex
+			~ Persiste no model RgDocumentInfo (Firebase)
+		#* ExtractCpfInfoAsync
+		#	~ Extrai informações do Cpf com o Regex
+		#	~ Persiste no model CpfDocumentInfo (Firebase)
+		#* ExtractDegreeInfoAsync
+		#	~ Extrai informações do Diploma com o Regex
+		#	~ Persiste no model DegreeInfo (Firebase)
+		* CompareDocumentsInfosAndFillBaseInfo
+			~ Pega informações atuais dos documentos
+			~ Compara e salva no model ApplicationFormInfo somente as coerentes
+			~ Baseado na coerência, define o status pré-aprovado ou pré-reprovado
+			~ Persiste no model ApplicationFormInfo (Firebase)
+
+- Data (Firebase)
+
+- Enums
+	EDocumentType
+		Rg "inclui CNH"
+		Cpf
+		Degree
+	EPreApprovalStatus
+		PreApproved
+		PreDisapproved
+	EGender
+
+- Models @@@
+	ApplicationFormInfo
+	RgDocumentInfo
+	CpfDocumentInfo
+	DegreeInfo
+		
+- Constants
+	ApplicationRegexPattern
+
+- Dto
+- ViewModel
