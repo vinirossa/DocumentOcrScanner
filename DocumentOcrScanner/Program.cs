@@ -1,3 +1,4 @@
+using DocumentOcrScanner.Data;
 using DocumentOcrScanner.Data.Infra;
 using DocumentOcrScanner.Services;
 using Google.Cloud.Firestore;
@@ -9,17 +10,21 @@ var builder = WebApplication.CreateBuilder(args);
 
 FirebaseSettings firebaseSettings = new FirebaseSettings();
 
+var jSonSet = JsonSerializer.Serialize(new FirebaseSettings());
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IDocumentInfoReaderService, DocumentInfoReaderService>();
+builder.Services.AddScoped<IApplicationFormInfoRepository, ApplicationFormInfoRepository>();
+
 
 builder.Services.AddSingleton(_ => new FirestoreProvider(
     new FirestoreDbBuilder
     {
         ProjectId = firebaseSettings.ProjectId,
-        JsonCredentials = JsonSerializer.Serialize(firebaseSettings)
+        JsonCredentials = JsonSerializer.Serialize(new FirebaseSettings())
     }.Build()
 ));
 

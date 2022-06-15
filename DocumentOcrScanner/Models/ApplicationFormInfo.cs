@@ -12,7 +12,7 @@ public class ApplicationFormInfo : IFirebaseEntity
 
     }
 
-    public ApplicationFormInfo(string name, string lastName, string motherName, EGender gender, DateTime birthDate, string nationality, string cityOrigin, string stateOrigin, string countryOrigin, string rg, string rgIssuingAgency, DateTime rgIssuanceDate, string rgIssuingState, bool degreeIssuedAbroad, EPreApprovalStatus preApprovalStatus, RgDocumentInfo rgDocumentInfo)
+    public ApplicationFormInfo(string name, string lastName, string motherName, EGender gender, DateTime birthDate, string nationality, string cityOrigin, string stateOrigin, string countryOrigin, string rgNumber, string rgIssuingAgency, DateTime rgIssuanceDate, string rgIssuingState, bool degreeIssuedAbroad, EPreApprovalStatus preApprovalStatus, RgDocumentInfo rgDocumentInfo)
     {
         Id = Guid.NewGuid().ToString("N");
         Name = name;
@@ -24,7 +24,7 @@ public class ApplicationFormInfo : IFirebaseEntity
         CityOrigin = cityOrigin;
         StateOrigin = stateOrigin;
         CountryOrigin = countryOrigin;
-        Rg = rg;
+        RgNumber = rgNumber;
         RgIssuingAgency = rgIssuingAgency;
         RgIssuanceDate = rgIssuanceDate;
         RgIssuingState = rgIssuingState;
@@ -63,7 +63,10 @@ public class ApplicationFormInfo : IFirebaseEntity
     [FirestoreProperty]
     public string CountryOrigin { get; set; }
 
+    [FirestoreProperty]
     public string RgNumber { get; set; }
+
+    [FirestoreProperty]
     public string RgIssuingAgency { get; set; }
 
     [FirestoreProperty]

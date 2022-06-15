@@ -1,4 +1,5 @@
-﻿using DocumentOcrScanner.Services;
+﻿using DocumentOcrScanner.Models;
+using DocumentOcrScanner.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DocumentOcrScanner.Controllers
@@ -13,7 +14,7 @@ namespace DocumentOcrScanner.Controllers
             _service = service;
         }
 
-        [HttpPost]
+        [HttpPost("file")]
         public async Task<IActionResult> ReadRgDocumentInfoAsync(IFormFile file)
         {
             try
@@ -28,6 +29,24 @@ namespace DocumentOcrScanner.Controllers
             catch (Exception ex)
             {
                 return BadRequest(new { Success = false, Message = ex.Message});
+            }
+        }
+
+        [HttpPost("teste")]
+        public async Task<IActionResult> TestAsync(ApplicationFormInfo model)
+        {
+            try
+            {
+                if (model is null)
+                    return BadRequest();
+
+                await _service.TesteAsync(model);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Success = false, Message = ex.Message });
             }
         }
     }

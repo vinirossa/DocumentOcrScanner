@@ -59,6 +59,11 @@ public class DocumentInfoReaderService : IDocumentInfoReaderService
         //var typeableLine = foundTypeableLines.FirstOrDefault();
     }
 
+    public async Task TesteAsync(ApplicationFormInfo model)
+    {
+        await _repository.Insert(model);
+    }
+
     //private ApplicationFormInfo ExtractRgDocumentInfo
 
     /// <summary>
