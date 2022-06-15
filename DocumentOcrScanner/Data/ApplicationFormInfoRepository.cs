@@ -1,5 +1,5 @@
 ﻿namespace DocumentOcrScanner.Data;
 
-public class ApplicationFormInfoRepository: IApplicationFormInfoRepository
-{
-}
+//public class ApplicationFormInfoRepository: IApplicationFormInfoRepository
+//{
+//}

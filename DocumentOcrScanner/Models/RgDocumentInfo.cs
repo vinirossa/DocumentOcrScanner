@@ -11,9 +11,9 @@ public class RgDocumentInfo
     public string StateOrigin { get; set; }
     public string CountryOrigin { get; set; }
 
-    public string Rg { get; set; }
+    public string RgNumber { get; set; }
     public string RgIssuingAgency { get; set; }
-    public DateTime RgIssuanceDate { get; set; }
+    public DateTime RgIssuingDate { get; set; }
     public string RgIssuingState { get; set; }
 
     public string WordCloud { get; set; }

@@ -14,7 +14,7 @@ public class ApplicationFormInfo
     public string StateOrigin { get; set; }
     public string CountryOrigin { get; set; }
 
-    public string Rg { get; set; }
+    public string RgNumber { get; set; }
     public string RgIssuingAgency { get; set; }
     public DateTime RgIssuanceDate { get; set; }
     public string RgIssuingState { get; set; }
