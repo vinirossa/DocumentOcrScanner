@@ -1,4 +1,6 @@
-﻿namespace DocumentOcrScanner.Models;
+﻿using DocumentOcrScanner.Enums;
+
+namespace DocumentOcrScanner.Models;
 
 public class ApplicationFormInfo
 {
