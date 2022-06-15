@@ -15,4 +15,6 @@ public class RgDocumentInfo
     public string RgIssuingAgency { get; set; }
     public DateTime RgIssuanceDate { get; set; }
     public string RgIssuingState { get; set; }
+
+    public string WordCloud { get; set; }
 }
