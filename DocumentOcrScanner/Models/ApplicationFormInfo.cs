@@ -20,4 +20,7 @@ public class ApplicationFormInfo
     public string RgIssuingState { get; set; }
 
     public bool DegreeIssuedAbroad { get; set; }
+
+    public EPreApprovalStatus PreApprovalStatus { get; set; }
+    public RgDocumentInfo RgDocumentInfo { get; set; }
 }

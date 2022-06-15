@@ -14,9 +14,14 @@ namespace DocumentOcrScanner.Controllers
         }
 
         [HttpPost]
-        public async Task ReadRgDocumentInfoAsync(IFormFile file)
+        public async Task<IActionResult> ReadRgDocumentInfoAsync(IFormFile file)
         {
+            if (file is null)
+                return BadRequest();
 
+            await _service.ReadRgDocumentInfoAsync(file);
+
+            return Ok();
         }
     }
 }
